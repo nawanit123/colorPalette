@@ -5,6 +5,7 @@ import './App.css';
 import seedColors from './seedColor.js';
 import { generatePalette } from './colorHelpers';
 import PaletteList from './PaletteList';
+import SingleColorComponent from './SingleColorComponent';
 
 class App extends Component {
   state = {};
@@ -37,7 +38,14 @@ class App extends Component {
         <Route
           exact
           path="/palette/:paletteId/:colorId"
-          render={() => <h1>Hello from Single Page URl</h1>}
+          render={(routeProps) => (
+            <SingleColorComponent
+              colorId={routeProps.match.params.colorId}
+              palette={generatePalette(
+                this.findPalette(routeProps.match.params.paletteId)
+              )}
+            />
+          )}
         />
       </Switch>
 
