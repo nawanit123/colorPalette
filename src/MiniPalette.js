@@ -19,6 +19,8 @@ const styles = {
     width: '100%',
     borderRadius: '5px',
     overflow: 'hidden',
+    display: 'flex',
+    flexWrap: 'wrap',
   },
   title: {
     display: 'flex',
@@ -36,11 +38,12 @@ const styles = {
   },
   miniColor: {
     height: '25%',
-    width: '20%',
+    flexBasis: '20%',
+    flexGrow: '1',
     display: 'inline-block',
     margin: '0 auto',
     position: 'relative',
-    marginBottom: '-3.5px',
+    marginBottom: '-4.5px',
   },
 };
 function MiniPalette(props) {
