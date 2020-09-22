@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createRef } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = {
@@ -52,9 +52,9 @@ function MiniPalette(props) {
       key={color.name}
     />
   ));
-
+  const wrapper = createRef();
   return (
-    <div className={classes.root} onClick={props.handleClick}>
+    <div className={classes.root} onClick={props.handleClick} ref={wrapper}>
       <div className={classes.colors}>{miniColorBoxes}</div>
       <h5 className={classes.title}>
         {paletteName} <span className={classes.emoji}>{emoji}</span>

@@ -1,14 +1,12 @@
 .Palette {
   height: 100vh;
-  margin-right: 2rem;
   display: flex;
   flex-direction: column;
+  margin: 0 0.2rem;
 }
 
 .Palette-colors {
   height: 90%;
-  display: flex;
-  flex-wrap: wrap;
 }
 
 .Palette-footer {
