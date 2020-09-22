@@ -39,11 +39,7 @@ const styles = {
   miniColor: {
     height: '25%',
     flexBasis: '20%',
-    flexGrow: '1',
-    display: 'inline-block',
-    margin: '0 auto',
-    position: 'relative',
-    marginBottom: '-4.5px',
+    flexShrink: '1',
   },
 };
 function MiniPalette(props) {
