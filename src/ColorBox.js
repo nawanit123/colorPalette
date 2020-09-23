@@ -3,6 +3,73 @@ import './ColorBox.css';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { Link } from 'react-router-dom';
 import chroma from 'chroma-js';
+import { withStyles } from '@material-ui/styles';
+
+const styles = {
+  colorBox: {
+    width: ' 20%',
+    height: (props) => (props.showAllColors ? '25%' : '50%'),
+    display: ' inline-block',
+    cursor: ' pointer',
+    margin: ' 0 auto',
+    position: ' relative',
+    textTransform: ' uppercase',
+    marginBottom: ' -4.5px',
+    color: ' rgba(0, 0, 0, 0.5)',
+  },
+  textStyle: {
+    color: (props) =>
+      chroma(props.backgroundColor).luminance() >= 0.7
+        ? 'rgba(0,0,0,0.5)'
+        : 'rgba(255,255,255,0.9',
+  },
+  darkColor: {
+    color: (props) =>
+      chroma(props.backgroundColor).luminance() <= 0.05
+        ? 'rgba(255,255,255,0.9'
+        : 'rgba(0,0,0,0.5)',
+  },
+  seeMoreLink: {
+    color: 'white',
+    textDecoration: 'none',
+  },
+  seeMore: {
+    backgroundColor: 'rgba(255, 255, 255, 0.3)',
+    position: 'absolute',
+    border: 'none',
+    right: '0px',
+    color: (props) =>
+      chroma(props.backgroundColor).luminance() >= 0.7
+        ? 'rgba(0,0,0,0.5)'
+        : 'rgba(255,255,255,0.9',
+
+    bottom: '0px',
+    width: '60px',
+    height: '30px',
+    textAlign: 'center',
+    lineHeight: '30px',
+    textDecoration: 'none',
+    outline: 'none',
+  },
+  copyButton: {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    width: '100px',
+    height: '30px',
+    marginLeft: '-50px',
+    marginTop: '-15px',
+    outline: 'none',
+    backgroundColor: 'rgba(255, 255, 255, 0.3)',
+    fontSize: '1rem',
+    lineHeight: '30px',
+    color: 'white',
+    border: 'none',
+    textDecoration: 'none',
+    textAlign: 'center',
+    opacity: 0,
+  },
+};
 
 class ColorBox extends Component {
   state = { copied: false };
@@ -14,39 +81,38 @@ class ColorBox extends Component {
     });
   };
   render() {
-    const { name, backgroundColor, moreURL, showLink } = this.props;
+    const {
+      name,
+      backgroundColor,
+      moreURL,
+      showAllColors,
+      classes,
+    } = this.props;
     const { copied } = this.state;
-    const isDarkColor = chroma(backgroundColor).luminance() <= 0.2;
     return (
       <CopyToClipboard text={backgroundColor} onCopy={this.handleClick}>
-        <div style={{ backgroundColor }} className="ColorBox">
+        <div style={{ backgroundColor }} className={classes.colorBox}>
           <div
             style={{ backgroundColor }}
             className={`copy-overlay ${copied ? 'show' : ''}`}
           />
           <div className={`copy-msg ${copied && 'show'}`}>
-            <h1 className={`${isDarkColor && 'light-text'}`}>Copied!!!</h1>
-            <p className={`${isDarkColor && 'light-text'}`}>
-              {backgroundColor}
-            </p>
+            <h1>Copied!!!</h1>
+            <p>{backgroundColor}</p>
           </div>
           <div className="copy-container">
             <div className="box-content">
-              <span className={`${!isDarkColor ? 'dark-text' : 'light-text'}`}>
-                {name}
-              </span>
+              <span className={classes.darkColor}>{name}</span>
             </div>
-            <button
-              className={`copy-button ${isDarkColor && 'ColorBox light-text'}`}
-            >
-              Copy
-            </button>
+            <button className={classes.copyButton}>Copy</button>
           </div>
-          {showLink && (
-            <Link to={moreURL} onClick={(e) => e.stopPropagation()}>
-              <span className={`see-more ${!isDarkColor && 'dark-text'}`}>
-                More
-              </span>
+          {showAllColors && (
+            <Link
+              to={moreURL}
+              onClick={(e) => e.stopPropagation()}
+              className={classes.seeMoreLink}
+            >
+              <span className={classes.seeMore}>More</span>
             </Link>
           )}
         </div>
@@ -55,4 +121,4 @@ class ColorBox extends Component {
   }
 }
 
-export default ColorBox;
+export default withStyles(styles)(ColorBox);

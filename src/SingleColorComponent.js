@@ -3,6 +3,7 @@ import ColorBox from './ColorBox';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import { Link } from 'react-router-dom';
+import './SingleColorComponent.css';
 
 class SingleColorComponent extends Component {
   constructor(props) {
@@ -34,7 +35,7 @@ class SingleColorComponent extends Component {
         key={color.name}
         name={color.name}
         backgroundColor={color[format]}
-        showLink={false}
+        showAllColors={false}
       />
     ));
     return (
@@ -42,7 +43,7 @@ class SingleColorComponent extends Component {
         <Navbar handleChange={this.changeFormat} showAllColors={false} />
         <div className="Palette-colors">
           {colorBoxes}
-          <div className="go-back ColorBox">
+          <div className="go-back">
             <Link to={`/palette/${id}`} className="back-button">
               GO BACK
             </Link>
