@@ -7,6 +7,7 @@
   position: relative;
   text-transform: uppercase;
   margin-bottom: -4.5px;
+  color: rgba(0, 0, 0, 0.5);
 }
 .SingleColorComponent .ColorBox {
   height: 50%;
@@ -89,7 +90,6 @@
   font-size: 4rem;
   transform: scale(0.1);
   opacity: 0;
-  color: white;
 }
 .copy-msg.show {
   opacity: 1;
@@ -110,4 +110,18 @@
 .copy-msg p {
   font-size: 2rem;
   font-weight: 100;
+}
+.box-content span.dark-text,
+.copy-msg h1.dark-text,
+.copy-msg p.dark-text,
+.copy-button.dark-text,
+.see-more.dark-text {
+  color: rgba(0, 0, 0, 0.5);
+}
+.box-content span.light-text,
+.copy-msg h1.light-text,
+.copy-msg p.light-text,
+.copy-button.light-text,
+.see-more.light-text {
+  color: rgba(255, 255, 255, 0.9);
 }
