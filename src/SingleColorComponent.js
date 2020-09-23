@@ -3,44 +3,8 @@ import ColorBox from './ColorBox';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import { Link } from 'react-router-dom';
-import './SingleColorComponent.css';
 import { withStyles } from '@material-ui/styles';
-
-const styles = {
-  Palette: {
-    height: '100vh',
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  colors: {
-    height: '90%',
-  },
-  goBack: {
-    position: 'relative',
-    backgroundColor: 'black',
-    display: 'inline-block',
-    width: '20%',
-    height: '50%',
-    marginBottom: '-4.5px',
-    '& a': {
-      position: 'absolute',
-      top: '50%',
-      left: '50%',
-      width: '100px',
-      height: '30px',
-      marginLeft: '-50px',
-      marginTop: '-15px',
-      outline: 'none',
-      backgroundColor: 'rgba(255, 255, 255, 0.3)',
-      fontSize: '1rem',
-      lineHeight: '30px',
-      color: 'white',
-      border: 'none',
-      textDecoration: 'none',
-      textAlign: 'center',
-    },
-  },
-};
+import styles from './styles/SingleColorComponentStyles';
 
 class SingleColorComponent extends Component {
   constructor(props) {
