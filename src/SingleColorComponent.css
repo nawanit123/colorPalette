@@ -1,11 +1,11 @@
-.go-back {
+/* .go-back {
   position: relative;
   background-color: black;
   display: inline-block;
   width: 20%;
   height: 50%;
   margin-bottom: -4.5px;
-}
+} */
 .back-button {
   position: absolute;
   top: 50%;
