@@ -26,6 +26,11 @@ class App extends Component {
         />
         <Route
           exact
+          path-="/palette/new"
+          render={() => <h1>Hello from NewPalette Route</h1>}
+        />
+        <Route
+          exact
           path="/palette/:id"
           render={(routerProps) => (
             <Palette
@@ -48,10 +53,6 @@ class App extends Component {
           )}
         />
       </Switch>
-
-      // <div className="App">
-      //   <Palette palette={generatePalette(seedColors[4])} />
-      // </div>
     );
   }
 }
