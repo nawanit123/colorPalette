@@ -10,8 +10,10 @@ import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import { ChromePicker } from 'react-color';
+import Button from '@material-ui/core/Button';
 
-const drawerWidth = 240;
+const drawerWidth = 400;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -73,6 +75,9 @@ const useStyles = makeStyles((theme) => ({
 export default function NewPalette() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+  const [mainColor, setMainColor] = React.useState({ r: 0, g: 0, b: 0, a: 1 });
+  const [opacityBg, setOpacityBg] = React.useState('1');
+  const [colorVal, setColorVal] = React.useState('#000000');
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -121,6 +126,27 @@ export default function NewPalette() {
           </IconButton>
         </div>
         <Divider />
+        <div>
+          <Button variant="contained" color="secondary">
+            Clear Palette
+          </Button>
+          <Button variant="contained" color="primary">
+            Random Color
+          </Button>
+        </div>
+        <ChromePicker
+          color={mainColor}
+          onChange={(color) => {
+            if (color.rgb !== mainColor) {
+              setColorVal(color.hex);
+              setMainColor(color.rgb);
+              setOpacityBg(color.rgb.a);
+            }
+          }}
+        />
+        <Button variant="contained" color="primary">
+          Add Color
+        </Button>
       </Drawer>
       <main
         className={clsx(classes.content, {
