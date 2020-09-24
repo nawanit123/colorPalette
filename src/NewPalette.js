@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -73,11 +73,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function NewPalette() {
+  const buttonColor = ({ r, g, b, a }) => `rgba(${r},${g},${b},${a})`;
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
-  const [mainColor, setMainColor] = React.useState({ r: 0, g: 0, b: 0, a: 1 });
-  const [opacityBg, setOpacityBg] = React.useState('1');
-  const [colorVal, setColorVal] = React.useState('#000000');
+  const [open, setOpen] = useState(false);
+  const [mainColor, setMainColor] = useState({ r: 0, g: 0, b: 0, a: 1 });
+  const [myColor, setMyColor] = useState('');
+  const [liColor, setLiColor] = useState([]);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -87,6 +88,13 @@ export default function NewPalette() {
     setOpen(false);
   };
 
+  const updateCurrentColor = (color) => {
+    if (color.rgb !== mainColor) {
+      setMainColor(color.rgb);
+      setMyColor(buttonColor(mainColor));
+    }
+  };
+  const addNewColor = () => setLiColor([...liColor, myColor]);
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -134,17 +142,13 @@ export default function NewPalette() {
             Random Color
           </Button>
         </div>
-        <ChromePicker
-          color={mainColor}
-          onChange={(color) => {
-            if (color.rgb !== mainColor) {
-              setColorVal(color.hex);
-              setMainColor(color.rgb);
-              setOpacityBg(color.rgb.a);
-            }
-          }}
-        />
-        <Button variant="contained" color="primary">
+        <ChromePicker color={mainColor} onChangeComplete={updateCurrentColor} />
+        <Button
+          variant="contained"
+          color="primary"
+          style={{ backgroundColor: myColor }}
+          onClick={addNewColor}
+        >
           Add Color
         </Button>
       </Drawer>
@@ -154,6 +158,11 @@ export default function NewPalette() {
         })}
       >
         <div className={classes.drawerHeader} />
+        <ul>
+          {liColor.map((color) => (
+            <li style={{ backgroundColor: color }}>{color}</li>
+          ))}
+        </ul>
       </main>
     </div>
   );
