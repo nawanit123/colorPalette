@@ -75,7 +75,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function NewPalette() {
+export default function NewPalette(props) {
   //   const buttonColor = ({ r, g, b, a }) => `rgba(${r},${g},${b},${a})`;
   const classes = useStyles();
   const [open, setOpen] = useState(false);
@@ -118,11 +118,22 @@ export default function NewPalette() {
   const handleChange = (evt) => {
     setNewName(evt.target.value);
   };
+  const handleSubmit = () => {
+    let newName = 'New Test Palette';
+    const newPalette = {
+      paletteName: newName,
+      id: newName.toLowerCase().replace(/ /g, '-'),
+      colors,
+    };
+    props.savePalette(newPalette);
+    props.history.push('/');
+  };
   return (
     <div className={classes.root}>
       <CssBaseline />
       <AppBar
         position="fixed"
+        color="default"
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
         })}
@@ -140,6 +151,9 @@ export default function NewPalette() {
           <Typography variant="h6" noWrap>
             Persistent drawer
           </Typography>
+          <Button variant="contained" color="primary" onClick={handleSubmit}>
+            Save Palette
+          </Button>
         </Toolbar>
       </AppBar>
       <Drawer

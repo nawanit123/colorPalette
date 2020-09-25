@@ -9,11 +9,14 @@ import SingleColorComponent from './SingleColorComponent';
 import NewPalette from './NewPalette';
 
 class App extends Component {
-  state = {};
+  state = { palettes: seedColors };
   findPalette = (id) => {
-    return seedColors.find((palette) => {
+    return this.state.palettes.find((palette) => {
       return palette.id === id;
     });
+  };
+  savePalette = (newPalette) => {
+    this.setState({ palettes: [...this.state.palettes, newPalette] });
   };
   render() {
     return (
@@ -22,10 +25,16 @@ class App extends Component {
           exact
           path="/"
           render={(routerProps) => (
-            <PaletteList palettes={seedColors} {...routerProps} />
+            <PaletteList palettes={this.state.palettes} {...routerProps} />
           )}
         />
-        <Route exact path="/palette/new" render={() => <NewPalette />} />
+        <Route
+          exact
+          path="/palette/new"
+          render={(routerProps) => (
+            <NewPalette {...routerProps} savePalette={this.savePalette} />
+          )}
+        />
         <Route
           exact
           path="/palette/:id"
