@@ -12,8 +12,9 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import { ChromePicker } from 'react-color';
 import Button from '@material-ui/core/Button';
-import DraggableColorBox from './DraggableColorBox';
+import DraggableColorBoxList from './DraggableColorBoxList';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
+import { arrayMove } from 'react-sortable-hoc';
 
 const drawerWidth = 400;
 
@@ -52,8 +53,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     padding: theme.spacing(0, 1),
-    // necessary for content to be below app bar
-    ...theme.mixins.toolbar,
+    ...theme.mixins.toolbar, // necessary for content to be below app bar
     justifyContent: 'flex-end',
   },
   content: {
@@ -82,7 +82,7 @@ export default function NewPalette(props) {
   const [myColor, setMyColor] = useState('#000000');
   const [colors, setColors] = useState([{ color: 'blue', name: 'blue' }]);
   const [newName, setNewName] = useState('');
-  const [newPaletteName,setNewPaletteName] = useState("");
+  const [newPaletteName, setNewPaletteName] = useState('');
 
   useEffect(() => {
     ValidatorForm.addValidationRule('isColorNameUnique', (value) =>
@@ -121,9 +121,9 @@ export default function NewPalette(props) {
   const handleChangeColorName = (evt) => {
     setNewName(evt.target.value);
   };
-  const handleChangePaletteName = (evt) =>{
+  const handleChangePaletteName = (evt) => {
     setNewPaletteName(evt.target.value);
-  }
+  };
   const handleSubmit = () => {
     let newName = newPaletteName;
     const newPalette = {
@@ -133,6 +133,12 @@ export default function NewPalette(props) {
     };
     props.savePalette(newPalette);
     props.history.push('/');
+  };
+  const removeColorBox = (colorName) => {
+    setColors((colors) => colors.filter((color) => color.name !== colorName));
+  };
+  const onSortEnd = ({ oldIndex, newIndex }) => {
+    setColors((colors) => arrayMove(colors, oldIndex, newIndex));
   };
   return (
     <div className={classes.root}>
@@ -160,11 +166,14 @@ export default function NewPalette(props) {
           <ValidatorForm onSubmit={handleSubmit}>
             <TextValidator
               label="PaletteName"
-              value= {newPaletteName}
+              value={newPaletteName}
               name="newPaletteName"
-              onChange = {handleChangePaletteName}
-              validators ={["required","isPaletteNameUnique"]}
-              errorMessages = {["Enter a Palette Name","PaletteName must be unique"]}
+              onChange={handleChangePaletteName}
+              validators={['required', 'isPaletteNameUnique']}
+              errorMessages={[
+                'Enter a Palette Name',
+                'PaletteName must be unique',
+              ]}
             />
             <Button variant="contained" color="primary" type="submit">
               Save Palette
@@ -202,6 +211,7 @@ export default function NewPalette(props) {
         />
         <ValidatorForm onSubmit={addNewColor}>
           <TextValidator
+            name="newName"
             value={newName}
             onChange={handleChangeColorName}
             validators={['required', 'isColorNameUnique', 'isColorUnique']}
@@ -228,13 +238,12 @@ export default function NewPalette(props) {
         })}
       >
         <div className={classes.drawerHeader} />
-        {colors.map((color) => (
-          <DraggableColorBox
-            color={color.color}
-            name={color.name}
-            key={color.color}
-          />
-        ))}
+        <DraggableColorBoxList
+          colors={colors}
+          removeColorBox={removeColorBox}
+          axis="xy"
+          onSortEnd={onSortEnd}
+        />
       </main>
     </div>
   );

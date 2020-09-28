@@ -18,6 +18,7 @@ export default {
     overflow: 'hidden',
     display: 'flex',
     flexWrap: 'wrap',
+    flexDirection: 'flex-start',
   },
   title: {
     display: 'flex',
@@ -34,8 +35,7 @@ export default {
     fontSize: '1.5rem',
   },
   miniColor: {
-    height: '25%',
     flexBasis: '20%',
-    flexShrink: '1',
+    flexGrow: '1',
   },
 };
