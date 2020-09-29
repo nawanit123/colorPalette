@@ -73,7 +73,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: 0,
   },
 }));
-const NewPalette = React.createRef((props) => {
+const NewPalette = (props) => {
   const { maxColors = 10 } = props;
   const classes = useStyles();
   const [open, setOpen] = useState(false);
@@ -238,10 +238,11 @@ const NewPalette = React.createRef((props) => {
         <DraggableColorBoxList
           colors={colors}
           removeColorBox={removeColorBox}
+          id={props.palettes[0].id}
         />
       </main>
     </div>
   );
-});
+};
 
 export default NewPalette;

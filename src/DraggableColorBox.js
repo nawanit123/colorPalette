@@ -43,9 +43,9 @@ const DraggableColorBox = (props) => {
       {(provided) => (
         <div
           ref={provided.innerRef}
-          className={classes.root}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
+          className={classes.root}
         >
           <div className={classes.boxContent}>
             <span>{name}</span>
