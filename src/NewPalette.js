@@ -76,11 +76,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function NewPalette(props) {
+  const { maxColors = 10 } = props;
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [mainColor, setMainColor] = useState({ r: 0, g: 0, b: 0, a: 1 });
   const [myColor, setMyColor] = useState('#000000');
-  const [colors, setColors] = useState([{ color: 'blue', name: 'blue' }]);
+  const [colors, setColors] = useState(props.palettes[0].colors);
   const [newName, setNewName] = useState('');
   const [newPaletteName, setNewPaletteName] = useState('');
 
