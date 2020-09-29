@@ -14,7 +14,6 @@ import { ChromePicker } from 'react-color';
 import Button from '@material-ui/core/Button';
 import DraggableColorBoxList from './DraggableColorBoxList';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
-import { arrayMove } from 'react-sortable-hoc';
 
 const drawerWidth = 400;
 
@@ -74,8 +73,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: 0,
   },
 }));
-
-export default function NewPalette(props) {
+const NewPalette = React.createRef((props) => {
   const { maxColors = 10 } = props;
   const classes = useStyles();
   const [open, setOpen] = useState(false);
@@ -138,9 +136,7 @@ export default function NewPalette(props) {
   const removeColorBox = (colorName) => {
     setColors((colors) => colors.filter((color) => color.name !== colorName));
   };
-  const onSortEnd = ({ oldIndex, newIndex }) => {
-    setColors((colors) => arrayMove(colors, oldIndex, newIndex));
-  };
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -242,10 +238,10 @@ export default function NewPalette(props) {
         <DraggableColorBoxList
           colors={colors}
           removeColorBox={removeColorBox}
-          axis="xy"
-          onSortEnd={onSortEnd}
         />
       </main>
     </div>
   );
-}
+});
+
+export default NewPalette;
