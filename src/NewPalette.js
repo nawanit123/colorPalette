@@ -14,6 +14,7 @@ import { ChromePicker } from 'react-color';
 import Button from '@material-ui/core/Button';
 import DraggableColorBoxList from './DraggableColorBoxList';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
+import { DragDropContext } from 'react-beautiful-dnd';
 
 const drawerWidth = 400;
 
@@ -137,6 +138,10 @@ const NewPalette = (props) => {
     setColors((colors) => colors.filter((color) => color.name !== colorName));
   };
 
+  const onDragEnd = (result) => {
+    //reorder the colors of colors array
+    console.log(result);
+  };
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -235,11 +240,13 @@ const NewPalette = (props) => {
         })}
       >
         <div className={classes.drawerHeader} />
-        <DraggableColorBoxList
-          colors={colors}
-          removeColorBox={removeColorBox}
-          id={props.palettes[0].id}
-        />
+        <DragDropContext onDragEnd={onDragEnd}>
+          <DraggableColorBoxList
+            colors={colors}
+            removeColorBox={removeColorBox}
+            id={props.palettes[0].id}
+          />
+        </DragDropContext>
       </main>
     </div>
   );
