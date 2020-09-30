@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -75,8 +76,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+NewPalette.defaultProps = {
+  maxColors: 20,
+};
 export default function NewPalette(props) {
-  const { maxColors = 10 } = props;
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [mainColor, setMainColor] = useState({ r: 0, g: 0, b: 0, a: 1 });
@@ -118,6 +121,21 @@ export default function NewPalette(props) {
     };
     setColors([...colors, newColor]);
     setNewName('');
+  };
+  const removeColors = () => {
+    setColors([]);
+  };
+
+  const generateRandomColor = () => {
+    const allColors = props.palettes.map((palette) => palette.colors).flat();
+    let rand = Math.floor(Math.random() * allColors.length);
+
+    while (colors.includes(allColors[rand]) && colors.length <= 20) {
+      rand = Math.floor(Math.random() * allColors.length);
+    }
+    setColors((prevColors) => {
+      return [...prevColors, allColors[rand]];
+    });
   };
   const handleChangeColorName = (evt) => {
     setNewName(evt.target.value);
@@ -179,6 +197,11 @@ export default function NewPalette(props) {
             <Button variant="contained" color="primary" type="submit">
               Save Palette
             </Button>
+            <Link to="/">
+              <Button variant="contained" color="secondary">
+                Go Back
+              </Button>
+            </Link>
           </ValidatorForm>
         </Toolbar>
       </AppBar>
@@ -198,10 +221,15 @@ export default function NewPalette(props) {
         </div>
         <Divider />
         <div>
-          <Button variant="contained" color="secondary">
+          <Button variant="contained" color="secondary" onClick={removeColors}>
             Clear Palette
           </Button>
-          <Button variant="contained" color="primary">
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={generateRandomColor}
+            disabled={colors.length >= props.maxColors ? true : false}
+          >
             Random Color
           </Button>
         </div>
