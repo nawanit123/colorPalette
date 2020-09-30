@@ -256,6 +256,7 @@ export default function NewPalette(props) {
             type="submit"
             color="primary"
             style={{ backgroundColor: myColor }}
+            disabled={colors.length >= props.maxColors ? true : false}
           >
             Add Color
           </Button>
