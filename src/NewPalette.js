@@ -75,7 +75,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 const NewPalette = (props) => {
-  const { maxColors = 10 } = props;
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [mainColor, setMainColor] = useState({ r: 0, g: 0, b: 0, a: 1 });
@@ -141,6 +140,22 @@ const NewPalette = (props) => {
   const onDragEnd = (result) => {
     //reorder the colors of colors array
     console.log(result);
+    const { destination, source } = result;
+
+    if (!destination.index) {
+      return;
+    }
+    if (
+      destination.index === source.index &&
+      destination.droppableId === source.droppableId
+    ) {
+      return;
+    }
+    const newColorArrayAfterDrag = [...colors];
+    const draggedColor = colors[source.index];
+    newColorArrayAfterDrag.splice(source.index, 1);
+    newColorArrayAfterDrag.splice(destination.index, 0, draggedColor);
+    setColors([...newColorArrayAfterDrag]);
   };
   return (
     <div className={classes.root}>

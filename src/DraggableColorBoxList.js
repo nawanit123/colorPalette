@@ -4,12 +4,14 @@ import { Droppable } from 'react-beautiful-dnd';
 
 const DraggableColorBoxList = ({ colors, removeColorBox, id }) => {
   return (
-    <Droppable droppableId="droppable">
+    <Droppable droppableId="droppable" direction="horizontal">
       {(provided) => (
         <div
           ref={provided.innerRef}
           {...provided.droppableProps}
-          style={{ height: '100%' }}
+          style={{
+            height: '100%',
+          }}
         >
           {colors.map((color, i) => (
             <DraggableColorBox
