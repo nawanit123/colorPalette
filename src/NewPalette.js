@@ -1,21 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import { ChromePicker } from 'react-color';
 import Button from '@material-ui/core/Button';
 import DraggableColorBoxList from './DraggableColorBoxList';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import arrayMove from 'array-move';
+import NewPaletteFormNavbar from './NewPaletteFormNavbar';
 
 const drawerWidth = 400;
 
@@ -86,7 +81,6 @@ export default function NewPalette(props) {
   const [myColor, setMyColor] = useState('#000000');
   const [colors, setColors] = useState(props.palettes[0].colors);
   const [newName, setNewName] = useState('');
-  const [newPaletteName, setNewPaletteName] = useState('');
 
   useEffect(() => {
     ValidatorForm.addValidationRule('isColorNameUnique', (value) =>
@@ -94,9 +88,6 @@ export default function NewPalette(props) {
     );
     ValidatorForm.addValidationRule('isColorUnique', (value) =>
       colors.every(({ color }) => color !== myColor)
-    );
-    ValidatorForm.addValidationRule('isPaletteNameUnique', (value) =>
-      props.palettes.every(({ paletteName }) => paletteName !== value)
     );
   }, [colors, myColor, props.palettes]);
 
@@ -140,14 +131,11 @@ export default function NewPalette(props) {
   const handleChangeColorName = (evt) => {
     setNewName(evt.target.value);
   };
-  const handleChangePaletteName = (evt) => {
-    setNewPaletteName(evt.target.value);
-  };
-  const handleSubmit = () => {
-    let newName = newPaletteName;
+
+  const handleSubmit = (newPaletteName) => {
     const newPalette = {
-      paletteName: newName,
-      id: newName.toLowerCase().replace(/ /g, '-'),
+      paletteName: newPaletteName,
+      id: newPaletteName.toLowerCase().replace(/ /g, '-'),
       colors,
     };
     props.savePalette(newPalette);
@@ -161,50 +149,13 @@ export default function NewPalette(props) {
   };
   return (
     <div className={classes.root}>
-      <CssBaseline />
-      <AppBar
-        position="fixed"
-        color="default"
-        className={clsx(classes.appBar, {
-          [classes.appBarShift]: open,
-        })}
-      >
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            className={clsx(classes.menuButton, open && classes.hide)}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap>
-            Persistent drawer
-          </Typography>
-          <ValidatorForm onSubmit={handleSubmit}>
-            <TextValidator
-              label="PaletteName"
-              value={newPaletteName}
-              name="newPaletteName"
-              onChange={handleChangePaletteName}
-              validators={['required', 'isPaletteNameUnique']}
-              errorMessages={[
-                'Enter a Palette Name',
-                'PaletteName must be unique',
-              ]}
-            />
-            <Button variant="contained" color="primary" type="submit">
-              Save Palette
-            </Button>
-            <Link to="/">
-              <Button variant="contained" color="secondary">
-                Go Back
-              </Button>
-            </Link>
-          </ValidatorForm>
-        </Toolbar>
-      </AppBar>
+      <NewPaletteFormNavbar
+        open={open}
+        classes={classes}
+        handleDrawerOpen={handleDrawerOpen}
+        handleSubmit={handleSubmit}
+        palettes={props.palettes}
+      />
       <Drawer
         className={classes.drawer}
         variant="persistent"
@@ -255,7 +206,15 @@ export default function NewPalette(props) {
             variant="contained"
             type="submit"
             color="primary"
-            style={{ backgroundColor: myColor }}
+            style={
+              colors.length >= props.maxColors
+                ? {
+                    backgroundColor: 'white',
+                    border: '1px solid black',
+                    color: 'black',
+                  }
+                : { backgroundColor: myColor }
+            }
             disabled={colors.length >= props.maxColors ? true : false}
           >
             Add Color
