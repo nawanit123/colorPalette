@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import Button from '@material-ui/core/Button';
 import DraggableColorBoxList from './DraggableColorBoxList';
@@ -20,9 +21,12 @@ const useStyles = makeStyles((theme) => ({
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
+    height: '100vh',
   },
   drawerPaper: {
     width: drawerWidth,
+    display: 'flex',
+    alignItems: 'center',
   },
   drawerHeader: {
     display: 'flex',
@@ -47,6 +51,20 @@ const useStyles = makeStyles((theme) => ({
       duration: theme.transitions.duration.enteringScreen,
     }),
     marginLeft: 0,
+  },
+  container: {
+    width: '90%',
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center !important',
+    alignItems: 'center',
+  },
+  buttons: {
+    width: '100%',
+  },
+  button: {
+    width: '50%',
   },
 }));
 
@@ -125,24 +143,35 @@ export default function NewPalette(props) {
           </IconButton>
         </div>
         <Divider />
-        <div>
-          <Button variant="contained" color="secondary" onClick={removeColors}>
-            Clear Palette
-          </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={generateRandomColor}
-            disabled={paletteFull}
-          >
-            Random Color
-          </Button>
+        <div className={classes.container}>
+          <Typography variant="h4" gutterBottom>
+            Design Your Palette
+          </Typography>
+          <div className={classes.buttons}>
+            <Button
+              variant="contained"
+              className={classes.button}
+              color="secondary"
+              onClick={removeColors}
+            >
+              Clear Palette
+            </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              className={classes.button}
+              onClick={generateRandomColor}
+              disabled={paletteFull}
+            >
+              Random Color
+            </Button>
+          </div>
+          <ColorPickerForm
+            paletteFull={paletteFull}
+            addNewColor={addNewColor}
+            colors={colors}
+          />
         </div>
-        <ColorPickerForm
-          paletteFull={paletteFull}
-          addNewColor={addNewColor}
-          colors={colors}
-        />
       </Drawer>
       <main
         className={clsx(classes.content, {
