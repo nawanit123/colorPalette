@@ -104,7 +104,6 @@ const NewPaletteFormNavbar = (props) => {
           classes={classes}
           palettes={palettes}
           hideForm={hideForm}
-          open={formShowing}
         />
       )}
     </div>

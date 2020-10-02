@@ -105,12 +105,10 @@ export default function NewPalette(props) {
     });
   };
 
-  const handleSubmit = (newPaletteName) => {
-    const newPalette = {
-      paletteName: newPaletteName,
-      id: newPaletteName.toLowerCase().replace(/ /g, '-'),
-      colors,
-    };
+  const handleSubmit = (newPalette) => {
+    newPalette.id = newPalette.paletteName.toLowerCase().replace(/ /g, '-');
+    newPalette.colors = colors;
+
     props.savePalette(newPalette);
     props.history.push('/');
   };
