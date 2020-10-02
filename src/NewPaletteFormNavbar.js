@@ -10,6 +10,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Button from '@material-ui/core/Button';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
+import NewPalettePopUpForm from './NewPalettePopUpForm';
 
 const drawerWidth = 400;
 
@@ -45,17 +46,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const NewPaletteFormNavbar = (props) => {
-  const { handleDrawerOpen, open, handleSubmit } = props;
+  const { handleDrawerOpen, open, handleSubmit, palettes } = props;
   const classes = useStyles();
-  const [newPaletteName, setNewPaletteName] = useState('');
-  const handleChangePaletteName = (evt) => {
-    setNewPaletteName(evt.target.value);
-  };
-  useEffect(() => {
-    ValidatorForm.addValidationRule('isPaletteNameUnique', (value) =>
-      props.palettes.every(({ paletteName }) => paletteName !== value)
-    );
-  }, [props.palettes]);
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -77,27 +70,13 @@ const NewPaletteFormNavbar = (props) => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            Persistent drawer
+            Create New Palette
           </Typography>
-          <ValidatorForm
-            className={classes.btnGroup}
-            onSubmit={() => handleSubmit(newPaletteName)}
-          >
-            <TextValidator
-              label="PaletteName"
-              value={newPaletteName}
-              name="newPaletteName"
-              onChange={handleChangePaletteName}
-              validators={['required', 'isPaletteNameUnique']}
-              errorMessages={[
-                'Enter a Palette Name',
-                'PaletteName must be unique',
-              ]}
-            />
-            <Button variant="contained" color="primary" type="submit">
-              Save Palette
-            </Button>
-          </ValidatorForm>
+          <NewPalettePopUpForm
+            handleSubmit={handleSubmit}
+            classes={classes}
+            palettes={palettes}
+          />
           <Link to="/">
             <Button variant="contained" color="secondary">
               Go Back
