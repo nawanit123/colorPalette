@@ -20,12 +20,12 @@ export default {
     color: (props) =>
       chroma(props.backgroundColor).luminance() >= 0.7
         ? 'rgba(0,0,0,0.5)'
-        : 'rgba(255,255,255,0.9',
+        : 'rgba(255,255,255,0.9)',
   },
   darkColor: {
     color: (props) =>
       chroma(props.backgroundColor).luminance() <= 0.08
-        ? 'rgba(255,255,255,0.9'
+        ? 'rgba(255,255,255,0.9)'
         : 'rgba(0,0,0,0.5)',
   },
   seeMoreLink: {
@@ -40,7 +40,7 @@ export default {
     color: (props) =>
       chroma(props.backgroundColor).luminance() >= 0.7
         ? 'rgba(0,0,0,0.5)'
-        : 'rgba(255,255,255,0.9',
+        : 'rgba(255,255,255,0.9)',
 
     bottom: '0px',
     width: '60px',
