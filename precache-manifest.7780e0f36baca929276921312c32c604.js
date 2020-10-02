@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "dbdbf729684c7b689443180e5f470275",
+    "revision": "94ea8efc4c577ae902d198cc1fd6ddae",
     "url": "/colorPalette/index.html"
   },
   {
-    "revision": "6b0ff72d921653f0cffc",
+    "revision": "d97ec8d7767743010ba2",
     "url": "/colorPalette/static/css/2.0da342d8.chunk.css"
   },
   {
-    "revision": "c2fa5a70165d3ef977b4",
+    "revision": "969f4ec3dc44d6e82bf8",
     "url": "/colorPalette/static/css/main.ba6ec20a.chunk.css"
   },
   {
-    "revision": "6b0ff72d921653f0cffc",
-    "url": "/colorPalette/static/js/2.6caa4d4f.chunk.js"
+    "revision": "d97ec8d7767743010ba2",
+    "url": "/colorPalette/static/js/2.d755117d.chunk.js"
   },
   {
     "revision": "fe2f19c5d5965d51615a596cf8d07fe9",
-    "url": "/colorPalette/static/js/2.6caa4d4f.chunk.js.LICENSE.txt"
+    "url": "/colorPalette/static/js/2.d755117d.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "c2fa5a70165d3ef977b4",
-    "url": "/colorPalette/static/js/main.aa4f901d.chunk.js"
+    "revision": "969f4ec3dc44d6e82bf8",
+    "url": "/colorPalette/static/js/main.5207374c.chunk.js"
   },
   {
     "revision": "ad897e855edecb1d7d44",
