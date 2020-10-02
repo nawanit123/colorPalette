@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
@@ -9,7 +9,6 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Button from '@material-ui/core/Button';
-import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import NewPalettePopUpForm from './NewPalettePopUpForm';
 
 const drawerWidth = 400;
@@ -42,13 +41,22 @@ const useStyles = makeStyles((theme) => ({
   btnGroup: {
     marginLeft: 'auto',
     display: 'flex',
+    '& a': {
+      textDecoration: 'none',
+    },
   },
 }));
 
 const NewPaletteFormNavbar = (props) => {
   const { handleDrawerOpen, open, handleSubmit, palettes } = props;
   const classes = useStyles();
-
+  const [formShowing, setFormShowing] = useState(false);
+  const showForm = () => {
+    setFormShowing(true);
+  };
+  const hideForm = () => {
+    setFormShowing(false);
+  };
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -72,18 +80,33 @@ const NewPaletteFormNavbar = (props) => {
           <Typography variant="h6" noWrap>
             Create New Palette
           </Typography>
-          <NewPalettePopUpForm
-            handleSubmit={handleSubmit}
-            classes={classes}
-            palettes={palettes}
-          />
-          <Link to="/">
-            <Button variant="contained" color="secondary">
-              Go Back
+
+          <div className={classes.btnGroup}>
+            <Link to="/">
+              <Button variant="contained" color="secondary">
+                Go Back
+              </Button>
+            </Link>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={showForm}
+              className={classes.button}
+            >
+              Save
             </Button>
-          </Link>
+          </div>
         </Toolbar>
       </AppBar>
+      {formShowing && (
+        <NewPalettePopUpForm
+          handleSubmit={handleSubmit}
+          classes={classes}
+          palettes={palettes}
+          hideForm={hideForm}
+          open={formShowing}
+        />
+      )}
     </div>
   );
 };
