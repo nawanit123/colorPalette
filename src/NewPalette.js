@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
@@ -11,68 +10,13 @@ import DraggableColorBoxList from './DraggableColorBoxList';
 import arrayMove from 'array-move';
 import NewPaletteFormNavbar from './NewPaletteFormNavbar';
 import ColorPickerForm from './ColorPickerForm';
-
-const drawerWidth = 400;
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-  },
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0,
-    height: '100vh',
-  },
-  drawerPaper: {
-    width: drawerWidth,
-    display: 'flex',
-    alignItems: 'center',
-  },
-  drawerHeader: {
-    display: 'flex',
-    alignItems: 'center',
-    padding: theme.spacing(0, 1),
-    ...theme.mixins.toolbar, // necessary for content to be below app bar
-    justifyContent: 'flex-end',
-  },
-  content: {
-    flexGrow: 1,
-    height: 'calc(100vh - 64px)',
-    padding: theme.spacing(3),
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    marginLeft: -drawerWidth,
-  },
-  contentShift: {
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-    marginLeft: 0,
-  },
-  container: {
-    width: '90%',
-    height: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center !important',
-    alignItems: 'center',
-  },
-  buttons: {
-    width: '100%',
-  },
-  button: {
-    width: '50%',
-  },
-}));
+import styles from './styles/NewPaletteStyles';
 
 NewPalette.defaultProps = {
   maxColors: 20,
 };
 export default function NewPalette(props) {
-  const classes = useStyles();
+  const classes = styles();
   const [open, setOpen] = useState(false);
 
   const [colors, setColors] = useState(props.palettes[0].colors);

@@ -7,7 +7,7 @@ import styles from './styles/PaletteStyles';
 
 class Palette extends Component {
   state = {
-    level: 500,
+    level: 100,
     format: 'hex',
   };
   changeLevel = (level) => {

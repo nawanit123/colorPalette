@@ -24,7 +24,7 @@ export default {
   },
   darkColor: {
     color: (props) =>
-      chroma(props.backgroundColor).luminance() <= 0.05
+      chroma(props.backgroundColor).luminance() <= 0.08
         ? 'rgba(255,255,255,0.9'
         : 'rgba(0,0,0,0.5)',
   },
