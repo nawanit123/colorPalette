@@ -46,36 +46,36 @@ export default function NewPalettePopUpForm(props) {
         aria-labelledby="form-dialog-title"
       >
         <DialogTitle id="form-dialog-title">Choose A Palette Name</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            Please enter a name for your new beautiful palette. Make sure it's
-            unique!
-            <ValidatorForm onSubmit={showEmojiPicker}>
-              <TextValidator
-                label="PaletteName"
-                value={newPaletteName}
-                name="newPaletteName"
-                onChange={handleChangePaletteName}
-                fullWidth
-                margin="normal"
-                validators={['required', 'isPaletteNameUnique']}
-                errorMessages={[
-                  'Enter a Palette Name',
-                  'PaletteName must be unique',
-                ]}
-              />
+        <ValidatorForm onSubmit={showEmojiPicker}>
+          <DialogContent>
+            <DialogContentText>
+              Please enter a name for your new beautiful palette. Make sure it's
+              unique!
+            </DialogContentText>
+            <TextValidator
+              label="PaletteName"
+              value={newPaletteName}
+              name="newPaletteName"
+              onChange={handleChangePaletteName}
+              fullWidth
+              margin="normal"
+              validators={['required', 'isPaletteNameUnique']}
+              errorMessages={[
+                'Enter a Palette Name',
+                'PaletteName must be unique',
+              ]}
+            />
+          </DialogContent>
 
-              <DialogActions>
-                <Button onClick={hideForm} color="primary">
-                  Cancel
-                </Button>
-                <Button variant="contained" color="primary" type="submit">
-                  Save Palette
-                </Button>
-              </DialogActions>
-            </ValidatorForm>
-          </DialogContentText>
-        </DialogContent>
+          <DialogActions>
+            <Button onClick={hideForm} color="primary">
+              Cancel
+            </Button>
+            <Button variant="contained" color="primary" type="submit">
+              Save Palette
+            </Button>
+          </DialogActions>
+        </ValidatorForm>
       </Dialog>
     </div>
   );

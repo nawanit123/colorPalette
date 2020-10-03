@@ -9,15 +9,31 @@ import SingleColorComponent from './SingleColorComponent';
 import NewPalette from './NewPalette';
 
 class App extends Component {
-  state = { palettes: seedColors };
-  findPalette = (id) => {
+  constructor(props) {
+    super(props);
+    const savedPalettes = JSON.parse(window.localStorage.getItem('palettes'));
+    this.state = { palettes: savedPalettes || seedColors };
+    this.findPalette = this.findPalette.bind(this);
+    this.savePalette = this.savePalette.bind(this);
+  }
+  findPalette(id) {
     return this.state.palettes.find((palette) => {
       return palette.id === id;
     });
-  };
-  savePalette = (newPalette) => {
-    this.setState({ palettes: [...this.state.palettes, newPalette] });
-  };
+  }
+  savePalette(newPalette) {
+    this.setState(
+      { palettes: [...this.state.palettes, newPalette] },
+      this.syncLocalStorage
+    );
+  }
+  syncLocalStorage() {
+    //Add savedPalettes to local Storage
+    window.localStorage.setItem(
+      'palettes',
+      JSON.stringify(this.state.palettes)
+    );
+  }
   render() {
     return (
       <Switch>
@@ -32,7 +48,11 @@ class App extends Component {
           exact
           path="/palette/new"
           render={(routerProps) => (
-            <NewPalette {...routerProps} savePalette={this.savePalette} palettes={this.state.palettes}/>
+            <NewPalette
+              {...routerProps}
+              savePalette={this.savePalette}
+              palettes={this.state.palettes}
+            />
           )}
         />
         <Route
