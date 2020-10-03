@@ -15,12 +15,10 @@ function MiniPalette(props) {
   const wrapper = createRef();
   return (
     <div className={classes.root} onClick={props.handleClick} ref={wrapper}>
-      <div aria-label="delete" className={classes.delete}>
-        <DeleteIcon
-          className={classes.deleteIcon}
-          styles={{ transition: 'all .3s ease-in-out' }}
-        />
-      </div>
+      <DeleteIcon
+        className={classes.deleteIcon}
+        styles={{ transition: 'all .3s ease-in-out' }}
+      />
       <div className={classes.colors}>{miniColorBoxes}</div>
       <h5 className={classes.title}>
         {paletteName} <span className={classes.emoji}>{emoji}</span>
