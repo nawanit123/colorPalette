@@ -50,6 +50,7 @@ export default {
     margin: '2px',
     backgroundColor: '#eb3d30',
     opacity: 0,
+    fontSize: '1.5rem',
     '&:hover': {
       transform: 'scale(1.1)',
     },
