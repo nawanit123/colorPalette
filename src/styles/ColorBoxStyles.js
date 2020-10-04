@@ -1,5 +1,5 @@
 import chroma from 'chroma-js';
-
+import sizes from './sizes';
 export default {
   colorBox: {
     width: ' 20%',
@@ -14,6 +14,18 @@ export default {
     '&:hover button': {
       opacity: '1',
       transition: '0.5s',
+    },
+    [sizes.down(['lg'])]: {
+      width: '25%',
+      height: (props) => (props.showAllColors ? '20%' : '50%'),
+    },
+    [sizes.down(['md'])]: {
+      width: '50%',
+      height: (props) => (props.showAllColors ? '10%' : '20%'),
+    },
+    [sizes.down(['sm'])]: {
+      width: '100%',
+      height: (props) => (props.showAllColors ? '5%' : '10%'),
     },
   },
   textStyle: {
