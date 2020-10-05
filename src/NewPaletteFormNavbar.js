@@ -47,7 +47,11 @@ const NewPaletteFormNavbar = (props) => {
 
           <div className={classes.btnGroup}>
             <Link to="/">
-              <Button variant="contained" color="secondary">
+              <Button
+                variant="contained"
+                color="secondary"
+                className={classes.button}
+              >
                 Go Back
               </Button>
             </Link>

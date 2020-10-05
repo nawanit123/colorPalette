@@ -17,7 +17,7 @@ export default {
     },
     [sizes.down(['lg'])]: {
       width: '25%',
-      height: (props) => (props.showAllColors ? '20%' : '50%'),
+      height: (props) => (props.showAllColors ? '20%' : '33.3333%'),
     },
     [sizes.down(['md'])]: {
       width: '50%',
@@ -113,7 +113,7 @@ export default {
     alignItems: ' center',
     justifyContent: ' center',
     flexDirection: ' column',
-    fontSize: ' 4rem',
+    // fontSize: '5rem',
     transform: ' scale(0.1)',
     opacity: ' 0',
     '& h1': {
@@ -121,10 +121,17 @@ export default {
       textShadow: '1px 2px black',
       background: 'rgba(255, 255, 255, 0.2)',
       width: '100%',
+      fontSize: '8rem',
       textAlign: 'center',
       marginBottom: '0',
       padding: '1rem',
       textTransform: 'uppercase',
+      [sizes.down('lg')]: {
+        fontSize: '7rem',
+      },
+      [sizes.down('sm')]: {
+        fontSize: '6rem',
+      },
     },
     '& p': {
       fontSize: '2rem',
