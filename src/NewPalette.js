@@ -126,6 +126,7 @@ export default function NewPalette(props) {
           removeColorBox={removeColorBox}
           axis="xy"
           onSortEnd={onSortEnd}
+          distance={20}
         />
       </main>
     </div>
