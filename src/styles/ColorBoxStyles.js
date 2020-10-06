@@ -4,6 +4,8 @@ export default {
   colorBox: {
     width: ' 20%',
     height: (props) => (props.showAllColors ? '25%' : '50%'),
+    maxWidth: '100vw',
+    maxHeight: '100vh',
     display: ' inline-block',
     cursor: ' pointer',
     margin: ' 0 auto',
@@ -13,7 +15,7 @@ export default {
     color: ' rgba(0, 0, 0, 0.5)',
     '&:hover button': {
       opacity: '1',
-      transition: '0.5s',
+      transition: '0.1s',
     },
     [sizes.down(['lg'])]: {
       width: '25%',
