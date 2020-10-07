@@ -48,7 +48,6 @@ class ColorBox extends Component {
           {showAllColors && (
             <Link
               to={moreURL}
-              as={moreURL}
               onClick={(e) => e.stopPropagation()}
               className={classes.seeMoreLink}
             >
