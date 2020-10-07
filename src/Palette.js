@@ -4,6 +4,7 @@ import Navbar from './Navbar';
 import Footer from './Footer';
 import { withStyles } from '@material-ui/styles';
 import styles from './styles/PaletteStyles';
+import { Link } from 'react-router-dom';
 
 class Palette extends Component {
   state = {
@@ -18,11 +19,11 @@ class Palette extends Component {
   };
   render() {
     const { colors, paletteName, emoji, id } = this.props.palette;
-    const { classes } = this.props;
+    const { classes, history } = this.props;
     const { level, format } = this.state;
     const colorBoxes = colors[level].map((color) => (
       <ColorBox
-        history={this.props.history}
+        history={history}
         backgroundColor={color[format]}
         name={color.name}
         handleChange={this.changeFormat}
@@ -41,6 +42,18 @@ class Palette extends Component {
         />
 
         <div className={classes.colors}>{colorBoxes}</div>
+        <div className={classes.link}>
+          <Link
+            to="/"
+            onClick={(e) => {
+              e.preventDefault();
+              history.push('/');
+            }}
+          >
+            GO BACK
+          </Link>
+        </div>
+
         <Footer paletteName={paletteName} emoji={emoji} />
       </div>
     );

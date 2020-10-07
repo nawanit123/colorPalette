@@ -3,38 +3,15 @@
   position: fixed;
   width: 100%;
   top: 0;
-  transition: transform 0.5s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
 }
 
-/* .page-enter {
-  transform: translateX(100%);
+.page-enter {
+  opacity: 0;
 }
 .page-enter-active {
-  transform: translateX(0%);
+  opacity: 1;
 }
 .page-exit-active {
-  transform: translateX(100%);
-} */
-/* slideTransition.scss */
-.page-exit > .direction {
-  z-index: 1;
-}
-.page-enter > .direction {
-  z-index: 10;
-}
-.page-enter.left > .direction {
-  transform: translate3d(100%, 0, 0);
-}
-.page-enter.right > .direction {
-  transform: translate3d(-100%, 0, 0);
-}
-.page-exit.left > .direction {
-  transform: translate3d(-100%, 0, 0);
-}
-.page-exit.right > .direction {
-  transform: translate3d(100%, 0, 0);
-}
-.page-enter.page-enter-active > .direction {
-  transform: translate3d(0, 0, 0);
-  transition: all 500ms ease-in-out;
+  opacity: 0;
 }

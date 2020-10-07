@@ -6,6 +6,16 @@ export default {
     margin: ' 0 0.2rem',
   },
   colors: {
-    height: '90%',
+    height: '85%',
+  },
+  link: {
+    backgroundColor: 'black',
+    height: '5%',
+    display: 'flex',
+    alignItems: 'center',
+    '& a': {
+      textDecoration: 'none',
+      color: 'white',
+    },
   },
 };
