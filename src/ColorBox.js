@@ -3,6 +3,7 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/styles';
 import styles from './styles/ColorBoxStyles';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 class ColorBox extends Component {
   state = { copied: false };
@@ -16,6 +17,7 @@ class ColorBox extends Component {
   render() {
     const {
       name,
+      id,
       backgroundColor,
       moreURL,
       showAllColors,
@@ -46,13 +48,17 @@ class ColorBox extends Component {
             <button className={classes.copyButton}>Copy</button>
           </div>
           {showAllColors && (
-            <Link
-              to={moreURL}
-              onClick={(e) => e.stopPropagation()}
-              className={classes.seeMoreLink}
-            >
-              <span className={classes.seeMore}>More</span>
-            </Link>
+            <TransitionGroup>
+              <CSSTransition key={id} classNames="fade" timeout={500}>
+                <Link
+                  to={moreURL}
+                  onClick={(e) => e.stopPropagation()}
+                  className={classes.seeMoreLink}
+                >
+                  <span className={classes.seeMore}>More</span>
+                </Link>
+              </CSSTransition>
+            </TransitionGroup>
           )}
         </div>
       </CopyToClipboard>

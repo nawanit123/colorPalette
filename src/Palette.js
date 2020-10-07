@@ -26,6 +26,7 @@ class Palette extends Component {
         name={color.name}
         handleChange={this.changeFormat}
         key={color.id}
+        id={color.id}
         moreURL={`/palette/${id}/${color.id}`}
         showAllColors
       />
