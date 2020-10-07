@@ -9,16 +9,32 @@ import SingleColorComponent from './SingleColorComponent';
 import NewPalette from './NewPalette';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import Page from './Page';
+import { withRouter } from 'react-router-dom';
 
 class App extends Component {
   constructor(props) {
     super(props);
     const savedPalettes = JSON.parse(window.localStorage.getItem('palettes'));
-    this.state = { palettes: savedPalettes || seedColors };
+    this.state = {
+      palettes: savedPalettes || seedColors,
+      prevDepth: this.getPathDepth(this.props.location),
+    };
     this.findPalette = this.findPalette.bind(this);
     this.savePalette = this.savePalette.bind(this);
     this.deletePalette = this.deletePalette.bind(this);
   }
+  getPathDepth = (location) => {
+    let pathArr = location.pathname.split('/');
+    pathArr = pathArr.filter((n) => n !== '');
+    return pathArr.length;
+  };
+
+  componentWillReceiveProps() {
+    //When props are updated, update the current path
+    //props supplies us with the location object which has a router location info
+    this.setState({ prevDepth: this.getPathDepth(this.props.location) });
+  }
+
   findPalette(id) {
     return this.state.palettes.find((palette) => {
       return palette.id === id;
@@ -51,64 +67,74 @@ class App extends Component {
           <TransitionGroup>
             <CSSTransition
               key={location.pathname}
-              classNames="fade"
+              classNames="page"
               timeout={500}
             >
-              <Switch location={location}>
-                <Route
-                  exact
-                  path="/"
-                  render={(routerProps) => (
-                    <Page>
-                      <PaletteList
-                        palettes={this.state.palettes}
-                        deletePalette={this.deletePalette}
-                        {...routerProps}
-                      />
-                    </Page>
-                  )}
-                />
-                <Route
-                  exact
-                  path="/palette/new"
-                  render={(routerProps) => (
-                    <Page>
-                      <NewPalette
-                        {...routerProps}
-                        savePalette={this.savePalette}
-                        palettes={this.state.palettes}
-                      />
-                    </Page>
-                  )}
-                />
-                <Route
-                  exact
-                  path="/palette/:id"
-                  render={(routerProps) => (
-                    <Page>
-                      <Palette
-                        palette={generatePalette(
-                          this.findPalette(routerProps.match.params.id)
-                        )}
-                      />
-                    </Page>
-                  )}
-                />
-                <Route
-                  exact
-                  path="/palette/:paletteId/:colorId"
-                  render={(routeProps) => (
-                    <Page>
-                      <SingleColorComponent
-                        colorId={routeProps.match.params.colorId}
-                        palette={generatePalette(
-                          this.findPalette(routeProps.match.params.paletteId)
-                        )}
-                      />
-                    </Page>
-                  )}
-                />
-              </Switch>
+              <div
+                className={
+                  this.getPathDepth(location) - this.state.prevDepth >= 0
+                    ? 'left'
+                    : 'right'
+                }
+              >
+                <Switch location={location}>
+                  <Route
+                    exact
+                    path="/"
+                    render={(routerProps) => (
+                      <Page location={location}>
+                        <PaletteList
+                          palettes={this.state.palettes}
+                          deletePalette={this.deletePalette}
+                          {...routerProps}
+                        />
+                      </Page>
+                    )}
+                  />
+                  <Route
+                    exact
+                    path="/palette/new"
+                    render={(routerProps) => (
+                      <Page location={location}>
+                        <NewPalette
+                          {...routerProps}
+                          savePalette={this.savePalette}
+                          palettes={this.state.palettes}
+                        />
+                      </Page>
+                    )}
+                  />
+                  <Route
+                    exact
+                    path="/palette/:id"
+                    render={(routerProps) => (
+                      <Page location={location}>
+                        <Palette
+                          {...routerProps}
+                          palette={generatePalette(
+                            this.findPalette(routerProps.match.params.id)
+                          )}
+                        />
+                      </Page>
+                    )}
+                  />
+                  <Route
+                    exact
+                    path="/palette/:paletteId/:colorId"
+                    render={(routeProps) => (
+                      <Page location={location}>
+                        <SingleColorComponent
+                          {...routeProps}
+                          colorId={routeProps.match.params.colorId}
+                          palette={generatePalette(
+                            this.findPalette(routeProps.match.params.paletteId)
+                          )}
+                        />
+                      </Page>
+                    )}
+                  />
+                </Switch>
+              </div>
             </CSSTransition>
           </TransitionGroup>
         )}
@@ -117,4 +143,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App);

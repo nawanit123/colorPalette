@@ -33,6 +33,7 @@ export default function NewPalettePopUpForm(props) {
       emoji: emoji.native,
     };
     handleSubmit(newPalette);
+    setStage('');
   };
   return (
     <div>

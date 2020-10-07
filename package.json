@@ -22,7 +22,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
     "react-sortable-hoc": "^1.11.0",
-    "react-transition-group": "^4.4.1"
+    "react-transition-group-v2": "^4.3.0"
   },
   "scripts": {
     "start": "react-scripts start",

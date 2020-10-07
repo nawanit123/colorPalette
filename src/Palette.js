@@ -22,11 +22,11 @@ class Palette extends Component {
     const { level, format } = this.state;
     const colorBoxes = colors[level].map((color) => (
       <ColorBox
+        history={this.props.history}
         backgroundColor={color[format]}
         name={color.name}
         handleChange={this.changeFormat}
         key={color.id}
-        id={color.id}
         moreURL={`/palette/${id}/${color.id}`}
         showAllColors
       />

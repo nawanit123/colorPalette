@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './styles/Page.css';
 
 const Page = (props) => {
-  return <section className="page">{props.children}</section>;
+  return <section className="page direction">{props.children}</section>;
 };
 
 export default Page;
