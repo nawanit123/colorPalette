@@ -4,7 +4,7 @@ import Navbar from './Navbar';
 import Footer from './Footer';
 import { withStyles } from '@material-ui/styles';
 import styles from './styles/PaletteStyles';
-import { Link } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
 
 class Palette extends Component {
   state = {
@@ -43,15 +43,14 @@ class Palette extends Component {
 
         <div className={classes.colors}>{colorBoxes}</div>
         <div className={classes.link}>
-          <Link
-            to="/"
+          <Button
             onClick={(e) => {
               e.preventDefault();
               history.push('/');
             }}
           >
             GO BACK
-          </Link>
+          </Button>
         </div>
 
         <Footer paletteName={paletteName} emoji={emoji} />

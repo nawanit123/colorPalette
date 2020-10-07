@@ -9,13 +9,13 @@ export default {
     height: '85%',
   },
   link: {
-    backgroundColor: 'black',
+    width: '15vw',
     height: '5%',
     display: 'flex',
     alignItems: 'center',
+    paddingRight: '0.5rem',
     '& a': {
-      textDecoration: 'none',
-      color: 'white',
+      color: 'black',
     },
   },
 };

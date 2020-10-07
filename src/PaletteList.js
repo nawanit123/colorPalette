@@ -19,9 +19,9 @@ import styles from './styles/PaletteListStyles';
 
 class PaletteList extends Component {
   state = { openDeleteDialogue: false, deletingId: '' };
-  goToPalette(id) {
+  goToPalette = (id) => {
     this.props.history.push(`/palette/${id}`);
-  }
+  };
   openDialog = (id) => {
     this.setState({ openDeleteDialogue: true, deletingId: id });
   };
@@ -49,7 +49,7 @@ class PaletteList extends Component {
                   id={palette.id}
                   key={palette.id}
                   {...palette}
-                  handleClick={this.goToPalette.bind(this, palette.id)}
+                  goToPalette={this.goToPalette}
                   openDialog={this.openDialog}
                 />
               </CSSTransition>

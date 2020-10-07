@@ -1,10 +1,19 @@
-import React, { useRef } from 'react';
+import React, { useRef, memo } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles/MiniPaletteStyles';
 import DeleteIcon from '@material-ui/icons/Delete';
 
-function MiniPalette(props) {
-  const { classes, paletteName, emoji, colors, openDialog, id } = props;
+const MiniPalette = (props) => {
+  const {
+    classes,
+    paletteName,
+    emoji,
+    colors,
+    openDialog,
+    id,
+    goToPalette,
+  } = props;
+  console.log('Rendering', paletteName);
   const handleClick = (e) => {
     e.stopPropagation();
     openDialog(id);
@@ -18,7 +27,7 @@ function MiniPalette(props) {
   ));
   const wrapper = useRef();
   return (
-    <div className={classes.root} onClick={props.handleClick} ref={wrapper}>
+    <div className={classes.root} onClick={() => goToPalette(id)} ref={wrapper}>
       <DeleteIcon
         className={classes.deleteIcon}
         styles={{ transition: 'all .3s ease-in-out' }}
@@ -30,6 +39,9 @@ function MiniPalette(props) {
       </h5>
     </div>
   );
+};
+function arePropsEqual(prevProps, nextProps) {
+  return prevProps.label === nextProps.label;
 }
 
-export default withStyles(styles)(MiniPalette);
+export default withStyles(styles)(memo(MiniPalette, arePropsEqual));
