@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ChromePicker } from 'react-color';
-import Button from '@material-ui/core/Button';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
+import Button from '@material-ui/core/Button';
 import styles from './styles/ColorPickerFormStyles';
 
 const ColorPickerForm = (props) => {

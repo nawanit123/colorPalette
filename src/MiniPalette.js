@@ -13,8 +13,10 @@ const MiniPalette = (props) => {
     id,
     goToPalette,
   } = props;
-  console.log('Rendering', paletteName);
   const handleClick = (e) => {
+    return goToPalette(id);
+  };
+  const handleDelete = (e) => {
     e.stopPropagation();
     openDialog(id);
   };
@@ -27,11 +29,11 @@ const MiniPalette = (props) => {
   ));
   const wrapper = useRef();
   return (
-    <div className={classes.root} onClick={() => goToPalette(id)} ref={wrapper}>
+    <div className={classes.root} onClick={handleClick} ref={wrapper}>
       <DeleteIcon
         className={classes.deleteIcon}
         styles={{ transition: 'all .3s ease-in-out' }}
-        onClick={handleClick}
+        onClick={handleDelete}
       />
       <div className={classes.colors}>{miniColorBoxes}</div>
       <h5 className={classes.title}>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
+import arrayMove from 'array-move';
 import Drawer from '@material-ui/core/Drawer';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
@@ -7,7 +8,6 @@ import Typography from '@material-ui/core/Typography';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import Button from '@material-ui/core/Button';
 import DraggableColorBoxList from './DraggableColorBoxList';
-import arrayMove from 'array-move';
 import NewPaletteFormNavbar from './NewPaletteFormNavbar';
 import ColorPickerForm from './ColorPickerForm';
 import styles from './styles/NewPaletteStyles';
