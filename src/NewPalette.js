@@ -10,6 +10,7 @@ import Button from '@material-ui/core/Button';
 import DraggableColorBoxList from './DraggableColorBoxList';
 import NewPaletteFormNavbar from './NewPaletteFormNavbar';
 import ColorPickerForm from './ColorPickerForm';
+import seedColors from './seedColor';
 import styles from './styles/NewPaletteStyles';
 
 NewPalette.defaultProps = {
@@ -19,7 +20,7 @@ export default function NewPalette(props) {
   const classes = styles();
   const [open, setOpen] = useState(false);
 
-  const [colors, setColors] = useState(props.palettes[0].colors);
+  const [colors, setColors] = useState(seedColors[0].colors);
   const paletteFull = colors.length >= props.maxColors;
 
   const handleDrawerOpen = () => {
@@ -39,6 +40,7 @@ export default function NewPalette(props) {
 
   const generateRandomColor = () => {
     const allColors = props.palettes.map((palette) => palette.colors).flat();
+
     let rand = Math.floor(Math.random() * allColors.length);
 
     while (colors.includes(allColors[rand]) && colors.length <= 20) {

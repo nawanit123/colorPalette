@@ -44,7 +44,7 @@ const ColorPickerForm = (props) => {
         disableAlpha={true}
         className={classes.picker}
       />
-      <ValidatorForm onSubmit={handleSubmit}>
+      <ValidatorForm onSubmit={handleSubmit} instantValidate={false}>
         <TextValidator
           name="newName"
           value={newName}
@@ -66,11 +66,9 @@ const ColorPickerForm = (props) => {
           type="submit"
           color="primary"
           className={classes.addColor}
-          style={
-            paletteFull
-              ? { backgroundColor: myColor }
-              : { backgroundColor: myColor }
-          }
+          style={{
+            backgroundColor: paletteFull ? 'grey' : myColor,
+          }}
           disabled={paletteFull}
         >
           {paletteFull ? 'PALETTE FULL' : 'Add Color'}
