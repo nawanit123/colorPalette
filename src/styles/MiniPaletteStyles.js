@@ -51,6 +51,7 @@ export default {
     backgroundColor: '#eb3d30',
     opacity: 0,
     fontSize: '1.5rem',
+    transition: 'all 0.3s ease-in-out',
     '&:hover': {
       transform: 'scale(1.1)',
     },

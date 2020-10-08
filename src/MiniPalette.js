@@ -30,11 +30,7 @@ const MiniPalette = (props) => {
   const wrapper = useRef();
   return (
     <div className={classes.root} onClick={handleClick} ref={wrapper}>
-      <DeleteIcon
-        className={classes.deleteIcon}
-        styles={{ transition: 'all .3s ease-in-out' }}
-        onClick={handleDelete}
-      />
+      <DeleteIcon className={classes.deleteIcon} onClick={handleDelete} />
       <div className={classes.colors}>{miniColorBoxes}</div>
       <h5 className={classes.title}>
         {paletteName} <span className={classes.emoji}>{emoji}</span>
