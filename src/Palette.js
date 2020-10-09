@@ -4,7 +4,6 @@ import Navbar from './Navbar';
 import Footer from './Footer';
 import { withStyles } from '@material-ui/styles';
 import styles from './styles/PaletteStyles';
-import Button from '@material-ui/core/Button';
 
 class Palette extends Component {
   state = {
@@ -42,18 +41,7 @@ class Palette extends Component {
         />
 
         <div className={classes.colors}>{colorBoxes}</div>
-        <div className={classes.link}>
-          <Button
-            onClick={(e) => {
-              e.preventDefault();
-              history.push('/');
-            }}
-          >
-            GO BACK
-          </Button>
-        </div>
-
-        <Footer paletteName={paletteName} emoji={emoji} />
+        <Footer paletteName={paletteName} emoji={emoji} history={history} />
       </div>
     );
   }
