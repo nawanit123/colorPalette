@@ -2,7 +2,7 @@ import sizes from './sizes';
 export default {
   Navbar: {
     display: 'flex',
-    height: '6vh',
+    height: '5vh',
     alignItems: 'center',
     margin: '0.2rem 0',
   },
