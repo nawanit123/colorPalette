@@ -10,6 +10,7 @@
 
 # production
 /build
+/colorPalette
 
 # misc
 .DS_Store
