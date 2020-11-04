@@ -43,7 +43,6 @@ export default {
         : 'rgba(0,0,0,0.5)',
   },
   seeMoreLink: {
-    color: 'white',
     textDecoration: 'none',
   },
   seeMore: {
@@ -52,9 +51,9 @@ export default {
     border: 'none',
     right: '0px',
     color: (props) =>
-      chroma(props.backgroundColor).luminance() >= 0.7
-        ? 'rgba(0,0,0,0.5)'
-        : 'rgba(255,255,255,0.9)',
+      chroma(props.backgroundColor).luminance() <= 0.08
+        ? 'rgba(255,255,255,0.9)'
+        : 'rgba(0,0,0,0.5)',
 
     bottom: '0px',
     width: '60px',
@@ -63,6 +62,9 @@ export default {
     lineHeight: '30px',
     textDecoration: 'none',
     outline: 'none',
+    [sizes.down('sm')]: {
+      marginBottom: '2.25px',
+    },
   },
   copyButton: {
     position: 'absolute',

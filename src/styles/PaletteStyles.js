@@ -3,18 +3,20 @@ export default {
   Palette: {
     height: ' 100vh',
     overflowX: 'hidden',
-    overflowY: 'auto',
+    overflowY: 'scroll',
     display: ' flex',
     flexDirection: ' column',
     margin: ' 0 0.2rem',
+    marginBottom: '20px',
     [sizes.down('md')]: {
-      height: '95vh',
+      height: '100vh',
     },
   },
   colors: {
-    height: '85vh',
-    [sizes.down('md')]: {
-      height: '90vh',
+    margin: '0',
+    height: '85%',
+    [sizes.down('sm')]: {
+      height: '82%',
     },
   },
 };

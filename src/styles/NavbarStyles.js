@@ -4,7 +4,8 @@ export default {
     display: 'flex',
     height: '5vh',
     alignItems: 'center',
-    margin: '0.2rem 0',
+    margin: 0,
+    marginTop: '0.2rem',
   },
   logo: {
     marginRight: '15px',

@@ -23,6 +23,7 @@ export default {
   },
   container: {
     width: '50%',
+    marginBottom: '40px',
     display: 'flex',
     alignItems: 'flex-start',
     flexDirection: 'column',

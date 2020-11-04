@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import ColorBox from './ColorBox';
 import Navbar from './Navbar';
-import Footer from './Footer';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/styles';
 import styles from './styles/SingleColorComponentStyles';
@@ -29,7 +28,6 @@ class SingleColorComponent extends Component {
     this.setState({ format: value });
   };
   render() {
-    const { paletteName, emoji } = this.props.palette;
     const { classes, history } = this.props;
     const { format } = this.state;
     const colorBoxes = this._shade.map((color) => (
@@ -57,7 +55,6 @@ class SingleColorComponent extends Component {
             </Link>
           </div>
         </div>
-        <Footer paletteName={paletteName} emoji={emoji} />
       </div>
     );
   }

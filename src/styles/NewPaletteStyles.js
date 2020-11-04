@@ -3,6 +3,7 @@ import { drawerWidth } from '../constants';
 const styles = makeStyles((theme) => ({
   root: {
     display: 'flex',
+    width: '100vw',
   },
   drawer: {
     width: drawerWidth,
@@ -21,6 +22,7 @@ const styles = makeStyles((theme) => ({
     ...theme.mixins.toolbar, // necessary for content to be below app bar
     justifyContent: 'flex-end',
     width: '100%',
+    margin: '0',
   },
   content: {
     flexGrow: 1,
