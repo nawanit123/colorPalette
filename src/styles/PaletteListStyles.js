@@ -23,7 +23,7 @@ export default {
   },
   container: {
     width: '50%',
-    marginBottom: '40px',
+    marginBottom: '100px',
     display: 'flex',
     alignItems: 'flex-start',
     flexDirection: 'column',
@@ -51,7 +51,7 @@ export default {
     display: 'grid',
     gridTemplateColumns: 'repeat(3, 30%)',
     columnGap: '2.5rem',
-    rowGap: '5rem',
+    rowGap: '3.5rem',
     [sizes.down('md')]: {
       gridTemplateColumns: 'repeat(2, 50%)',
     },
