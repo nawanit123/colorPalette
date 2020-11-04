@@ -4,7 +4,7 @@ import DraggableColorBox from './DraggableColorBox';
 
 const DraggableColorList = SortableContainer(({ colors, removeColorBox }) => {
   return (
-    <div style={{ height: '96%' }}>
+    <div style={{ height: '93%' }}>
       {colors.map((color, i) => (
         <DraggableColorBox
           distance={1}
