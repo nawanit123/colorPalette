@@ -18,5 +18,8 @@ export default {
     [sizes.down('sm')]: {
       height: '82%',
     },
+    [sizes.down('xs')]: {
+      height: '77%',
+    },
   },
 };

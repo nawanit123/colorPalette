@@ -42,9 +42,15 @@ const styles = {
     fontSize: '12px',
     display: 'flex',
     justifyContent: 'space-between',
+    [sizes.down('xs')]: {
+      fontSize: '0.5rem',
+    },
   },
   deleteIcon: {
     transition: 'all 0.3s ease-in-out',
+    [sizes.down('xs')]: {
+      fontSize: '0.6rem',
+    },
   },
 };
 

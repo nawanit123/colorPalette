@@ -45,6 +45,14 @@ const styles = makeStyles((theme) => ({
       padding: 0,
     },
   },
+  createPallet: {
+    [sizes.down('sm')]: {
+      fontSize: '0.8rem',
+    },
+    [sizes.down('xs')]: {
+      fontSize: '0.6rem',
+    },
+  },
 }));
 
 export default styles;

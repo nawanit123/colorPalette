@@ -12,10 +12,11 @@ const Footer = (props) => {
           e.preventDefault();
           history.push('/');
         }}
+        className="goBack"
       >
         GO BACK
       </Button>
-      <span>
+      <span className="paletteName">
         {paletteName} <span className="emoji">{emoji}</span>
       </span>
     </footer>

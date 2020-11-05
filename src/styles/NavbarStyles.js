@@ -24,6 +24,11 @@ export default {
       display: 'none',
     },
   },
+  levelSpan: {
+    [sizes.down('xs')]: {
+      fontSize: '0.5rem',
+    },
+  },
   slider: {
     width: '340px',
     margin: '0 10px',
@@ -46,9 +51,17 @@ export default {
     [sizes.down('sm')]: {
       width: '150px',
     },
+    [sizes.down('xs')]: {
+      width: '110px',
+    },
   },
   selectContainer: {
     marginLeft: 'auto',
     marginRight: '1rem',
+  },
+  selectField: {
+    [sizes.down('xs')]: {
+      fontSize: '0.5rem',
+    },
   },
 };

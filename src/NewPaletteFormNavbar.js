@@ -41,7 +41,7 @@ const NewPaletteFormNavbar = (props) => {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap>
+          <Typography variant="h6" noWrap className={classes.createPallet}>
             Create New Palette
           </Typography>
 

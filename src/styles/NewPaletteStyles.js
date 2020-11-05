@@ -1,4 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
+import sizes from './sizes';
 import { drawerWidth } from '../constants';
 const styles = makeStyles((theme) => ({
   root: {
@@ -14,6 +15,10 @@ const styles = makeStyles((theme) => ({
     width: drawerWidth,
     display: 'flex',
     alignItems: 'center',
+    flexDirection: 'column',
+    [sizes.down('sm')]: {
+      width: '100vw',
+    },
   },
   drawerHeader: {
     display: 'flex',
@@ -42,18 +47,24 @@ const styles = makeStyles((theme) => ({
     marginLeft: 0,
   },
   container: {
-    width: '90%',
+    width: '100%',
     height: '100%',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center !important',
-    alignItems: 'center',
+    alignItems: 'center !important',
   },
   buttons: {
     width: '100%',
+    [sizes.down('sm')]: {
+      width: '90%',
+    },
   },
   button: {
     width: '50%',
+    [sizes.down('sm')]: {
+      fontSize: '0.6rem',
+    },
   },
 }));
 

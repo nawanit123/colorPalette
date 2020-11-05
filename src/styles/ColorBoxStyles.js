@@ -29,6 +29,10 @@ export default {
       width: '100%',
       height: (props) => (props.showAllColors ? '5%' : '10%'),
     },
+    [sizes.down(['xs'])]: {
+      width: '100%',
+      height: (props) => (props.showAllColors ? '4.8%' : '10%'),
+    },
   },
   textStyle: {
     color: (props) =>
@@ -65,6 +69,11 @@ export default {
     [sizes.down('sm')]: {
       marginBottom: '2.25px',
     },
+    [sizes.down('xs')]: {
+      margin: '0',
+      height: '100%',
+      fontSize: '0.5rem',
+    },
   },
   copyButton: {
     position: 'absolute',
@@ -83,6 +92,11 @@ export default {
     textDecoration: 'none',
     textAlign: 'center',
     opacity: '0',
+    [sizes.down('xs')]: {
+      fontSize: '0.5rem',
+      height: '95%',
+      marginTop: -11,
+    },
   },
   boxContent: {
     position: 'absolute',
@@ -92,6 +106,9 @@ export default {
     padding: '10px',
     letterSpacing: '1px',
     fontSize: '12px',
+    [sizes.down('xs')]: {
+      fontSize: '0.5rem',
+    },
   },
   copyOverlay: {
     opacity: '0',

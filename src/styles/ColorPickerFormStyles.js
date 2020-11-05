@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
-
+import sizes from './sizes';
 const styles = makeStyles((theme) => ({
   root: {
     width: '100%',
@@ -7,7 +7,10 @@ const styles = makeStyles((theme) => ({
   },
   picker: {
     width: '100% !important',
-    marginTop: '2rem',
+    margin: '1.2rem auto !important',
+    [sizes.down('xs')]: {
+      width: '50% !important',
+    },
   },
   addColor: {
     width: '100%',

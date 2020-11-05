@@ -32,7 +32,7 @@ class Navbar extends Component {
         </div>
         {showAllColors && (
           <>
-            <span>Level {level}</span>
+            <span className={classes.levelSpan}>Level {level}</span>
             <div className={classes.slider}>
               <Slider
                 defaultValue={level}
@@ -45,7 +45,11 @@ class Navbar extends Component {
           </>
         )}
         <div className={classes.selectContainer}>
-          <Select value={format} onChange={this.handleChange}>
+          <Select
+            className={classes.selectField}
+            value={format}
+            onChange={this.handleChange}
+          >
             <MenuItem value="hex">HEX - #ffffff</MenuItem>
             <MenuItem value="rgb">RGB - rgb(255,255,255)</MenuItem>
             <MenuItem value="rgba">RGBA -rgba(255,255,255,1.0)</MenuItem>
