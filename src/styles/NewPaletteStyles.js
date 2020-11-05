@@ -15,7 +15,6 @@ const styles = makeStyles((theme) => ({
     width: drawerWidth,
     display: 'flex',
     alignItems: 'center',
-    flexDirection: 'column',
     [sizes.down('sm')]: {
       width: '100vw',
     },
@@ -47,7 +46,7 @@ const styles = makeStyles((theme) => ({
     marginLeft: 0,
   },
   container: {
-    width: '100%',
+    width: '90%',
     height: '100%',
     display: 'flex',
     flexDirection: 'column',

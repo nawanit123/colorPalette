@@ -6,7 +6,7 @@ const styles = makeStyles((theme) => ({
     height: '100%',
   },
   picker: {
-    width: '100% !important',
+    width: '225px !important',
     margin: '1.2rem auto !important',
     [sizes.down('xs')]: {
       width: '50% !important',
